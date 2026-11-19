@@ -9,6 +9,20 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 ---
-<Base title="Projects" description="Projects pages">
-	<h1>Project X</h1>
+<Base title={project.data.title} description={project.data.summary}>
+	<div>
+		<h1>{project.data.title}</h1>
+		<span>{project.data.status}</span>
+		<p>{project.data.summary}</p>
+		<h3>Built with:</h3>
+		<ul>
+			{project.data.stack.map((i) => (
+				<li>{i}</li>
+			))}
+		</ul>
+		{project.data.repo && (
+			<span><a class="link" href={project.data.repo}>Visit to learn more!</a></span>
+		)}
+	</div>
+	<Content />
 </Base>

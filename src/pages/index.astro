@@ -9,7 +9,7 @@ const projects = (await getCollection("projects")).sort(
 	<h1 class="title">Jaden Mantie</h1>
 	<ul>
 		{projects.map(project => (
-			<li><a href={`/projects/${project.id}`}>{project.data.title}</a></li>
+			<li><a class="link" href={`/projects/${project.id}`}>{project.data.title}</a></li>
 		))}
 	</ul>
 </Base>

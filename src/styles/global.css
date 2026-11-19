@@ -4,6 +4,7 @@
   box-sizing: border-box;
   max-width: 100%;
   background-color: var(--bg-base);
+  color: var(--text);
   font-family: var(--font-exo2);
 
     /* Backgrounds */
@@ -39,4 +40,12 @@
 .title {
   color: var(--text-strong);
   font-size: var(--text-3xl);
+}
+
+.link {
+  color: var(--text);
+}
+
+.link:hover {
+  color: var(--accent);
 }

@@ -1,7 +1,7 @@
 ---
 title: "MediaHub"
 summary: "A self-hosted dashboard that unifies movies, shows, and music from multiple sources into one interface."
-stack: ["Astro", "React", "Docker", "PostgreSQL"]
+stack: ["React", "Go", "Docker", "PostgreSQL"]
 status: "done"
 order: 2
 repo: "https://github.com/Mantie7553/MediaHub"
