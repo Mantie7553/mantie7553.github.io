@@ -1,0 +1,23 @@
+/* general styling for portfolio overall */
+:root {
+    /* Backgrounds */
+  --bg-deep:     #030503;  /* page edges */
+  --bg-base:     #071206;  /* main background */
+  --bg-glow:     #12300a;  /* radial glow behind the orb */
+
+    /* Surfaces */
+  --panel:        rgb(20 45 10 / 0.55);   /* project panel */
+  --pill:         rgb(100 170 20 / 0.16); /* unselected menu items, rows */
+  --border:       rgb(160 230 70 / 0.35);
+
+    /* Accent */
+  --accent:       #8fd424;  /* selected item, orb body, focus ring */
+  --accent-light: #e4ffa8;  /* orb highlight */
+  --accent-dark:  #2f6a08;  /* orb shadow side */
+  --on-accent:    #0b1a02;  /* text on accent backgrounds */
+
+    /* Text */
+  --text-strong:  #f0ffe0;  /* headings, project titles */
+  --text:         #d8f5c0;  /* body */
+  --text-muted:   #9fcf72;  /* labels, stack, hints */
+}
