@@ -12,6 +12,8 @@ const projects = defineCollection({
         stack: z.array(z.string()),
         status: z.enum(["done", "in-progress", "paused"]),
         order: z.number(),
-        
+
     })
 })
+
+export const collections = { projects };

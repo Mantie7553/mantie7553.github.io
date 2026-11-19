@@ -1,5 +1,11 @@
 /* general styling for portfolio overall */
 :root {
+    /* Reset */
+  box-sizing: border-box;
+  max-width: 100%;
+  background-color: var(--bg-base);
+  font-family: var(--font-exo2);
+
     /* Backgrounds */
   --bg-deep:     #030503;  /* page edges */
   --bg-base:     #071206;  /* main background */
@@ -20,4 +26,17 @@
   --text-strong:  #f0ffe0;  /* headings, project titles */
   --text:         #d8f5c0;  /* body */
   --text-muted:   #9fcf72;  /* labels, stack, hints */
+
+    /* Text sizes */
+  --text-sm: 0.5rem;   /* lables, hints */
+  --text-base: 1rem; /* Body */
+  --text-xl: 1.25rem;   /* Sub headings */
+  --text-2xl: 1.5rem;  /* Headings, project titles */
+  --text-3xl: 2rem;  /* Titles */
+
+}
+
+.title {
+  color: var(--text-strong);
+  font-size: var(--text-3xl);
 }
