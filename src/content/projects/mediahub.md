@@ -4,6 +4,11 @@ summary: "A self-hosted dashboard that unifies movies, shows, and music from mul
 stack: ["Astro", "React", "Docker", "PostgreSQL"]
 status: "done"
 order: 2
+repo: "https://github.com/Mantie7553/MediaHub"
+featured: true
+cover:
+    src: ./mediahub-cover.png
+    alt: "MediaHub home view showing posters in a grid"
 ---
 
 ## Overview

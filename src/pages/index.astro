@@ -1,7 +1,16 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro"
+const projects = (await getCollection("projects")).sort(
+	(a,b) => b.data.order.valueOf() - a.data.order.valueOf(),
+);
 ---
 <Base title="Home" description="Main page for website">
 	<h1 class="title">Jaden Mantie</h1>
+	<ul>
+		{projects.map(project => (
+			<li><a href={`/projects/${project.id}`}>{project.data.title}</a></li>
+		))}
+	</ul>
 </Base>
 
