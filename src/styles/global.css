@@ -62,6 +62,7 @@ header {
 footer {
   display: flex;
   justify-content: flex-end;
+  padding-top: 1rem;
   gap: 2.5rem;
   text-transform: uppercase;
 }
@@ -104,27 +105,18 @@ hr {
   background-color: var(--border);
 }
 
-@media (min-width: 860px) {
-  .grid {
-    display: grid;
-    grid-template: 
-    'orb hub' auto
-    'intro hub' 1fr / auto 1fr;
-    gap: 2rem;
-  }
-  
-  .hub { grid-area: hub; }
-
-  .hub-inner {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-  }
-}
-
 .location {
   display: flex;
   gap: 1.5rem;
+}
+
+.intro {
+  grid-area: intro;
+}
+
+.intro > p:first-child {
+  font-size: var(--text-3xl);
+  color: var(--text-strong);
 }
 
 .orb {
@@ -161,13 +153,9 @@ hr {
   pointer-events: none;
 }
 
-.intro {
-  grid-area: intro;
-}
-
-.intro > p:first-child {
-  font-size: var(--text-3xl);
-  color: var(--text-strong);
+.hub-inner {
+  display: grid;
+  gap: 2rem;
 }
 
 .nav {
@@ -222,14 +210,19 @@ hr {
   border-color: var(--accent);
 }
 
-.row-details {
-  overflow: hidden;
-}
-
 .pill:focus-visible,
 .project-row:focus-visible {
   outline: 2px solid var(--accent-light);
   outline-offset: 3px;
+}
+
+.status {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+}
+
+.row-details {
+  overflow: hidden;
 }
 
 .stack {
@@ -238,11 +231,6 @@ hr {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
-}
-
-.status {
-  font-size: var(--text-sm);
-  text-transform: uppercase;
 }
 
 .summary {
@@ -261,6 +249,60 @@ hr {
 
 @keyframes ring-spin {
   to {transform: rotate(360deg);}
+}
+
+@media (min-width: 860px) {
+  .grid {
+    display: grid;
+    grid-template: 
+    'orb hub' auto
+    'intro hub' 1fr / auto 1fr;
+    gap: 2rem;
+  }
+  
+  .hub { grid-area: hub; }
+
+  .hub-inner {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+@media (max-width: 859.98px) {
+  header {
+    padding-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .location {
+    font-size: var(--text-sm);
+  }
+
+  .orb {
+    height: clamp(100px, 18vw, 150px);
+    width: clamp(100px, 18vw, 150px);
+    margin: 30px;
+    margin-inline: auto;
+  }
+
+  .orb::before {
+    inset: -10px;
+  }
+
+  .orb::after {
+    inset: -20px;
+  }
+}
+
+@media (hover: none) {
+  footer {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
