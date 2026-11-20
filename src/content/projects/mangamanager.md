@@ -3,7 +3,7 @@ title: "Manga Manager"
 summary: "A personal library tracker for manga volumes, reading progress, and wishlist releases."
 stack: ["React", "TypeScript", "Node.js", "SQLite"]
 status: "in-progress"
-order: 1
+order: 2
 ---
 
 ## Overview

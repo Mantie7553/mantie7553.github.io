@@ -1,12 +1,5 @@
 /* general styling for portfolio overall */
 :root {
-    /* Reset */
-  box-sizing: border-box;
-  max-width: 100%;
-  background-color: var(--bg-base);
-  color: var(--text);
-  font-family: var(--font-exo2);
-
     /* Backgrounds */
   --bg-deep:     #030503;  /* page edges */
   --bg-base:     #071206;  /* main background */
@@ -29,23 +22,183 @@
   --text-muted:   #9fcf72;  /* labels, stack, hints */
 
     /* Text sizes */
-  --text-sm: 0.5rem;   /* lables, hints */
+  --text-sm: 0.8rem;   /* labels, hints */
   --text-base: 1rem; /* Body */
   --text-xl: 1.25rem;   /* Sub headings */
   --text-2xl: 1.5rem;  /* Headings, project titles */
   --text-3xl: 2rem;  /* Titles */
 
+  --font-body: 'Exo 2', sans-serif;
+
 }
 
-.title {
-  color: var(--text-strong);
-  font-size: var(--text-3xl);
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.link {
+body {
+  background-color: var(--bg-base);
   color: var(--text);
+  font-family: var(--font-body);
+  padding: 1rem;
 }
 
-.link:hover {
-  color: var(--accent);
+main, header, footer {
+  margin-inline: auto;
+  max-width: 1280px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  text-transform: uppercase;
+  padding-bottom: 5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2.5rem;
+  padding-top: 2rem;
+  text-transform: uppercase;
+}
+
+footer > div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+footer > div > kbd {
+  padding: 0.1rem 0.4rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  border: 2px solid var(--border);
+  border-radius: 0.3rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  color: var(--text-strong);
+}
+
+h2 {
+  padding-bottom: 0.3rem;
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  padding: 0.5rem 0;
+  font-size: var(--text-xl);
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: var(--border);
+}
+
+@media (min-width: 860px) {
+  .grid {
+    display: grid;
+    grid-template: 
+    'orb nav panel' auto
+    'intro nav panel' 1fr / auto auto 1fr;
+    gap: 2rem;
+  }
+}
+
+.location {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.orb {
+  grid-area: orb;
+  display: grid;
+  width: 15rem;
+  height: 15rem;
+  place-items: center;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  border-radius: 50%;
+}
+
+.intro {
+  grid-area: intro;
+}
+
+.intro > p:first-child {
+  font-size: var(--text-3xl);
+  color: var(--text-strong);
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 1.25rem;
+}
+
+.pill {
+  padding: 1rem 4rem 1rem 1rem;
+  background-color: var(--pill);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3rem;
+}
+
+.pill:hover, .pill:focus-visible {
+  background-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.panel {
+  grid-area: panel;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  color: var(--text);
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.project-row {
+  display: block;
+  padding: 1rem;
+  color: var(--text-muted);
+  background-color: var(--pill);
+  border: 1px solid transparent;
+  border-radius: 1rem;
+}
+
+.project-row:hover, .project-row:focus-visible {
+  border-color: var(--accent);
+}
+
+.stack {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.status {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+}
+
+.summary {
+  margin-top: 0.5rem;
+  color: var(--text);
 }
