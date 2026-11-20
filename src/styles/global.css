@@ -9,7 +9,8 @@
   --panel:        rgb(20 45 10 / 0.55);   /* project panel */
   --pill:         rgb(100 170 20 / 0.16); /* unselected menu items, rows */
   --border:       rgb(160 230 70 / 0.35);
-
+  --border-faded: rgb(160 230 70 / 0.15);
+  
     /* Accent */
   --accent:       #8fd424;  /* selected item, orb body, focus ring */
   --accent-light: #e4ffa8;  /* orb highlight */
@@ -62,7 +63,6 @@ footer {
   display: flex;
   justify-content: flex-end;
   gap: 2.5rem;
-  padding-top: 2rem;
   text-transform: uppercase;
 }
 
@@ -130,12 +130,35 @@ hr {
 .orb {
   grid-area: orb;
   display: grid;
-  width: 15rem;
-  height: 15rem;
+  margin: 55px;
+  position: relative;
+  height: clamp(140px, 18vw, 220px);
+  width: clamp(140px, 18vw, 220px);
   place-items: center;
-  background-color: var(--accent);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  background-image: radial-gradient(circle at 35% 30%, var(--accent-light), var(--accent), var(--accent-dark));
   color: var(--on-accent);
   border-radius: 50%;
+  box-shadow: 0 0 5rem var(--accent), inset -10px -10px 3rem var(--on-accent);
+}
+
+.orb::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  border: 1px dashed var(--border);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: -55px;
+  border: 1px dashed var(--border-faded);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .intro {
@@ -213,4 +236,25 @@ hr {
 .summary {
   margin-top: 0.5rem;
   color: var(--text);
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 2rem var(--accent), inset -10px -10px 3rem var(--on-accent);
+  }
+  50% {
+    box-shadow: 0 0 6rem var(--accent), inset -10px -10px 3rem var(--on-accent);
+  }
+}
+
+@keyframes ring-spin {
+  to {transform: rotate(360deg);}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orb { animation: orb-pulse 6s ease-in-out infinite; }
+
+  .orb::before { animation: ring-spin 35s linear infinite; }
+
+  .orb::after { animation: ring-spin 60s linear infinite reverse; }
 }
