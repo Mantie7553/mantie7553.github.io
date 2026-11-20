@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 
 type ProjectSummary = { id: string; title: string; summary: string; stack: string[]; status: "done" | "in-progress" | "paused" };
 type Props = { projects: ProjectSummary[] };
@@ -78,57 +79,80 @@ export default function Hub({ projects }: Props) {
         interacted.current = true;
         setArea("projects");
     }
+    return <MotionConfig reducedMotion="user">
+        <div className="hub-inner" onKeyDown={onKeyDown}>
+            <nav aria-label="Main" className="nav">
+                {navItems.map((item, index) => {
+                    const selected = area === "menu" && index === menuIndex;
+                    return (
+                        <motion.a
+                        className={selected ? "pill is-selected" : "pill"}
+                        href={item.path}
+                        key={item.display}
+                        ref={(el) => { menuRefs.current[index] = el; }}
+                        onFocus={() => selectMenu(index)}
+                        onMouseEnter={() => selectMenu(index)}
+                        onClick={(e) => onMenuClick(e, item)}
+                        initial={{ x: -12 }}
+                        animate={{ x: 0 }}
+                        transition={{ delay: index * 0.05, duration: 0.3 }}
+                        >
+                            <AnimatePresence initial={false}>
+                                {selected && (
+                                    <motion.div
+                                        className="pill-highlight"
+                                        initial={{ opacity: 0, scale: 0.96 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.15 }}
+                                    />
+                                )}
+                            </AnimatePresence>
+                            {item.display}
+                        </motion.a>
+                    );
+                })}
+            </nav>
 
-    return <div className="hub-inner" onKeyDown={onKeyDown}>
-        <nav aria-label="Main" className="nav">
-            {navItems.map((item, index) => {
-                const selected = area === "menu" && index === menuIndex;
-                return (
-                    <a
-                      className={selected ? "pill is-selected" : "pill"}
-                      href={item.path}
-                      key={item.display}
-                      ref={(el) => { menuRefs.current[index] = el; }}
-                      onFocus={() => selectMenu(index)}
-                      onMouseEnter={() => selectMenu(index)}
-                      onClick={(e) => onMenuClick(e, item)}
-                    >
-                        {item.display}
-                    </a>
-                );
-            })}
-		</nav>
-
-		<section id="projects" className="panel">
-			<h2>Projects</h2>
-			<hr/>
-			{projects.map((project: ProjectSummary, index) => {
-                const selected = area === "projects" && index === projectIndex;
-                const expanded = index === projectIndex;
-                return (
-                    <a 
-                      className={selected ? "project-row is-selected": "project-row"} 
-                      href={`/projects/${project.id}`} 
-                      key={project.id}
-                      ref={(el) => { projectRefs.current[index] = el; }}
-                      onFocus={() => selectProject(index)}
-                      onMouseEnter={() => selectProject(index)}
-                    >
-                        <h3>{project.title}</h3>
-                        <p className="status">{project.status}</p>
-                        { expanded && (
-                            <>
-                                <ul className="stack">
-                                    {project.stack.map((i: string) => (
-                                        <li key={`${project.id}_${i}`}>{i}</li>
-                                    ))}
-                                </ul>
-                                <p className="summary">{project.summary}</p>
-                            </>
-                        )}
-                    </a>
-                );
-            })}
-		</section>
-    </div>
+            <section id="projects" className="panel">
+                <h2>Projects</h2>
+                <hr/>
+                {projects.map((project: ProjectSummary, index) => {
+                    const selected = area === "projects" && index === projectIndex;
+                    const expanded = index === projectIndex;
+                    return (
+                        <a 
+                        className={selected ? "project-row is-selected": "project-row"} 
+                        href={`/projects/${project.id}`} 
+                        key={project.id}
+                        ref={(el) => { projectRefs.current[index] = el; }}
+                        onFocus={() => selectProject(index)}
+                        onMouseEnter={() => selectProject(index)}
+                        >
+                            <h3>{project.title}</h3>
+                            <p className="status">{project.status}</p>
+                            <AnimatePresence initial={false}>
+                                { expanded && (
+                                    <motion.div
+                                        className="row-details"
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <ul className="stack">
+                                            {project.stack.map((i: string) => (
+                                                <li key={`${project.id}_${i}`}>{i}</li>
+                                            ))}
+                                        </ul>
+                                        <p className="summary">{project.summary}</p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </a>
+                    );
+                })}
+            </section>
+        </div>
+    </MotionConfig>
 }

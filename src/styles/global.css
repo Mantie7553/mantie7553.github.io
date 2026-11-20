@@ -178,6 +178,7 @@ hr {
 }
 
 .pill {
+  position: relative;
   padding: 1rem 4rem 1rem 1rem;
   background-color: var(--pill);
   color: var(--text);
@@ -186,8 +187,15 @@ hr {
 }
 
 .pill.is-selected {
-  background-color: var(--accent);
   color: var(--on-accent);
+}
+
+.pill-highlight {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--accent);
+  border-radius: inherit;
 }
 
 .panel {
@@ -212,6 +220,10 @@ hr {
 
 .project-row.is-selected {
   border-color: var(--accent);
+}
+
+.row-details {
+  overflow: hidden;
 }
 
 .pill:focus-visible,
